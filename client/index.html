@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>REST API</title>
+
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- v-cloak attribute means don't show a block while Vue.js is not ready -->
+  <div class="container-fluid pt-3" id="app" v-cloak>
+    <h1>REST API</h1>
+    <div class="card mb-3">
+      <div class="card-body">
+        <form class="form-inline mb-3" role="form" @submit.prevent="onSubmit">
+          <div class="input-group mr-5">
+            <label for="name" class="mr-3">Name:</label>
+            <input type="text" class="form-control mr-3" id="name" v-model="form.name">
+            <label for="value" class="mr-3">Value:</label>
+            <input type="text" class="form-control mr-3" id="value" v-model="form.value">
+            <button class="btn btn-primary" type="submit" :disabled="!canCreate">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div v-if="contacts.length">
+      <div class="card mb-3" v-for="contact in contacts">
+        <div class="card-body">
+          <h5 class="card-title" :style="{color: contact.marked ? 'red' : 'black'}">{{ contact.name }}</h5>
+          <p class="card-text">{{ contact.value }}</p>
+          <button class="btn btn-primary" @click="tagContact(contact.id)" :disabled="contact.marked">Tag</button>
+          <button class="btn btn-danger" @click="deleteContact(contact.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+    <p v-else>No contacts found</p>
+  </div>
+
+  <script type="module" src="frontend.js"></script>
+</body>
+
+</html>
