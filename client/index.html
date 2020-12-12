@@ -7,8 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   <title>REST API</title>
 
   <style>
@@ -35,7 +34,10 @@
         </form>
       </div>
     </div>
-    <div v-if="contacts.length">
+    <div v-if="loading">
+      <loader />
+    </div>
+    <div v-else-if="contacts.length">
       <div class="card mb-3" v-for="contact in contacts">
         <div class="card-body">
           <h5 class="card-title" :style="{color: contact.marked ? 'red' : 'black'}">{{ contact.name }}</h5>
