@@ -4,6 +4,8 @@ Based on the next YouTube Tutorial: [https://www.youtube.com/watch?v=lzQIhjElV_g
 
 This application uses [Express.js](https://expressjs.com) as a backend server and a [Vue.js](https://vuejs.org) for frontend and a [Bootstrap](https://getbootstrap.com) for styling.
 
+[List of HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
 ## install dependencies
 ```
 $ npm i
