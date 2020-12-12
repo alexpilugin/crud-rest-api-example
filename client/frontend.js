@@ -39,10 +39,16 @@ new Vue({
       this.contacts.push(newContact)
       this.form.name = this.form.value = ''
     },
-    tagContact(id) {
+    async tagContact(id) {
       console.log("tagContact: " + id)
       const contact = this.contacts.find(c => c.id === id)
-      contact.marked = true
+      const { message, updated } = await request(`/api/contacts/${id}`, 'PUT', {
+        ...contact,
+        marked: true
+      })
+      if (message === "OK") {
+        contact.marked = updated.marked
+      }
     },
     async deleteContact(id) {
       const { message } = await request(`/api/contacts/${id}`, 'DELETE')

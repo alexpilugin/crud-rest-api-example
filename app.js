@@ -10,14 +10,16 @@ let CONTACTS = [
 
 app.use(express.json())
 
-// GET
+/* CRUD: CREATE, READ, UPDATE, DELETE */
+
+// GET (READ)
 app.get('/api/contacts', (req, res) => {
   setTimeout( () => {
     res.status(200).json(CONTACTS)
   }, 1000)
 })
 
-// POST
+// POST (CREATE)
 app.post('/api/contacts', (req, res) => {
   const contact = {...req.body, id: v4(), marked: false}
   CONTACTS.push(contact)
@@ -28,6 +30,13 @@ app.post('/api/contacts', (req, res) => {
 app.delete('/api/contacts/:id', (req, res) => {
   CONTACTS = CONTACTS.filter(c => c.id !== req.params.id)
   res.status(200).json({message: 'OK', id: req.params.id})
+})
+
+// PUT (UPDATE)
+app.put('/api/contacts/:id', (req, res) => {
+  const idx = CONTACTS.findIndex(c => c.id === req.params.id)
+  CONTACTS[idx] = req.body
+  res.status(200).json({message: 'OK', updated: CONTACTS[idx]})
 })
 
 app.use(express.static(path.resolve(__dirname, 'client')))
